@@ -42,9 +42,11 @@ find_package(catkin REQUIRED COMPONENTS
   roslib
 )
 
+
 set(SOURCE_FILES         
   src/main.cpp
 )
+message("---- Source File at\n\"${SOURCE_FILES}\"")
 
 
 INCLUDE_DIRECTORIES(
@@ -69,6 +71,11 @@ LIST(APPEND LINK_LIBS
 )
 
 
+include_directories(
+  include ${catkin_INCLUDE_DIRS}
+)
+
 add_executable(dso_live ${SOURCE_FILES})
 target_link_libraries(dso_live ${LINK_LIBS})
 
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
