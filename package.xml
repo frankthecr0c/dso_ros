@@ -3,9 +3,9 @@
   <name>dso_ros</name>
   <version>1.0.0</version>
   <description>
-    Wrapper Ros for Dso, updated for melodic 
+    Wrapper Ros for Dso, updated for melodic
   </description>
-  <maintainer email="Francesco Crocetti">Francesco Crocetti</maintainer>
+  <maintainer email="Francesco.crocetti@unipg.it">Francesco Crocetti</maintainer>
   <license>BSD</license>
 
   <url>http://ros.org/wiki/foo_core</url>
