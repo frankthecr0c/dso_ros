@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package format="1">
+  <name>dso_ros</name>
+  <version>1.0.0</version>
+  <description>
+    Wrapper Ros for Dso, updated for melodic 
+  </description>
+  <maintainer email="Francesco Crocetti">Francesco Crocetti</maintainer>
+  <license>BSD</license>
+
+  <url>http://ros.org/wiki/foo_core</url>
+  <author>Francesco Crocetti</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>roslib</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>roslib</run_depend>
+
+</package>
+
+

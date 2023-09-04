@@ -10,16 +10,14 @@ include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 #  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
 set(ROS_BUILD_TYPE Release)
 
-rosbuild_init()
 
 set(EXECUTABLE_OUTPUT_PATH bin)
-
+set (CMAKE_CXX_STANDARD 14)
 
 set(DSO_PATH $ENV{DSO_PATH})
 message("\n\n---- LOOKING FOR DSO at\n\"${DSO_PATH}\"")
 
-
-find_package(Pangolin 0.2 REQUIRED)
+find_package(Pangolin REQUIRED)
 message("\n\n---- FOUND Pangolin Headers at\n\"${Pangolin_INCLUDE_DIRS}\"")
 message("---- FOUND Pangolin Libs at\n\"${Pangolin_LIBRARIES}\"")
 
@@ -31,11 +29,6 @@ find_package(Eigen3 REQUIRED)
 find_package(Boost COMPONENTS system thread) 
 find_library(DSO_LIBRARY dso ${DSO_PATH}/build/lib)
 
-# SSE flags
-rosbuild_check_for_sse()
-set(CMAKE_CXX_FLAGS
-   "${SSE_FLAGS} -O2 -g -std=c++0x -march=native -fno-omit-frame-pointer"
-)
 
 set(SOURCE_FILES         
   src/main.cpp
@@ -48,7 +41,15 @@ include_directories(
   ${OpenCV_INCLUDE_DIRS}
   ${Pangolin_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR}
-)  
+)
+
+LIST(APPEND LINK_LIBS
+  ${Boost_LIBRARIES}
+  ${OpenCV_LIBS}
+  ${catkin_LIBRARIES}
+  ${Pangolin_LIBRARIES}
+  ${DSO_LIBRARY}
+)
 
 rosbuild_add_executable(dso_live src/main.cpp ${SOURCE_FILES})
 target_link_libraries(dso_live ${DSO_LIBRARY} ${Pangolin_LIBRARIES} ${OpenCV_LIBS})
